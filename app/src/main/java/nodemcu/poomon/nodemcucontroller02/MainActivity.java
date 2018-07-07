@@ -13,9 +13,9 @@ import com.koushikdutta.ion.Response;
 public class MainActivity extends AppCompatActivity {
 
     GPIO pin0 = new GPIO(0);
+    String toggleURL, stateURL;
+    boolean actualState;
 
-    String toggleURL, stateURL, messageForUser, rawMessage;
-    boolean actualState, buttonChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         onAppOpenUpdate();
     }
 
-    public void requestHTTP(String url){
+
+    public void requestHTTP(String url, final TextView textView){
+        final ToggleButton toggleD0 = (ToggleButton) findViewById(R.id.toggleD0);
         Ion.with(this)
                 .load(url)
                 .asString()
@@ -32,27 +34,23 @@ public class MainActivity extends AppCompatActivity {
                 .setCallback(new FutureCallback<Response<String>>() {
                     @Override
                     public void onCompleted(Exception e, Response<String> result) {
-                        // maybe split this to a new method to make it modular
-                        rawMessage = result.getResult();
-                        statusMessage(rawMessage);
+                        if (result.getResult().indexOf("1") != -1){
+                            actualState = true;
+                            overrideToggleD0(toggleD0);
+                            textView.setText("Status: ON");
+                        }
+                        else {
+                            actualState = false;
+                            overrideToggleD0(toggleD0);
+                            textView.setText("Status: OFF");
+                        }
                     }
                 });
     }
 
     public void onAppOpenUpdate(){
         final TextView textStatusD0 = (TextView) findViewById(R.id.textStatusD0);
-        requestHTTP(pin0.getStateURL());
-    }
-
-    public String statusMessage(String rawMessage){
-        if (rawMessage.indexOf("1") != -1){
-            this.overrideToggleD0(true);
-            return "Status: ON";
-        }
-        else {
-            this.overrideToggleD0(false);
-            return "Status: OFF";
-        }
+        requestHTTP(pin0.getStateURL(), textStatusD0);
     }
 
     public void onToggleD0(View view) {
@@ -61,24 +59,23 @@ public class MainActivity extends AppCompatActivity {
         toggleD0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // maybe add if of override or control with actualState here or add buttonChecked and make it here
                 if (toggleD0.isChecked()) {
-                    buttonChecked = true;
                     toggleURL = pin0.getOnURL();
                 } else {
-                    buttonChecked = false;
                     toggleURL = pin0.getOffURL();
                 }
-                requestHTTP(toggleURL);
+                requestHTTP(toggleURL, textStatusD0);
             }
         });
     }
 
-    public void overrideToggleD0(boolean actualState, ToggleButton tgBTN, boolean buttonChecked){
+    public void overrideToggleD0(ToggleButton tgBTN){
         // if real: ON, button = TURN OFF
-        if (actualState == true && buttonChecked){
+        if (actualState == false && tgBTN.isChecked()){
             tgBTN.setChecked(false);
         }
-        else if(actualState == false && buttonChecked) {
+        else if(actualState == true && !tgBTN.isChecked()) {
             tgBTN.setChecked(true);
         }
         // if real: OFF, button = TURN ON
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public void fetch0(View view){
         final TextView textStatusD0 = (TextView) findViewById(R.id.textStatusD0);
         stateURL = pin0.getStateURL();
-        requestHTTP(stateURL);
+        requestHTTP(stateURL, textStatusD0);
     }
 
 
