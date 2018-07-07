@@ -1,8 +1,12 @@
 package nodemcu.poomon.nodemcucontroller02;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -10,10 +14,13 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     GPIO pin0 = new GPIO(0);
     String toggleURL, stateURL;
+    String nameD0;
     boolean actualState;
 
 
@@ -22,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         onAppOpenUpdate();
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
 
@@ -34,18 +47,55 @@ public class MainActivity extends AppCompatActivity {
                 .setCallback(new FutureCallback<Response<String>>() {
                     @Override
                     public void onCompleted(Exception e, Response<String> result) {
-                        if (result.getResult().indexOf("1") != -1){
-                            actualState = true;
-                            overrideToggleD0(toggleD0);
-                            textView.setText("Status: ON");
+                        // NullPointerException because Ion throws the exception when server can't be reached, in this case the server isn't properly start.
+                        // Needs more research about this Ion exception
+                        try {
+                            if (result.getResult().indexOf("1") != -1) {
+                                actualState = true;
+                                overrideToggleD0(toggleD0);
+                                textView.setText("Status: ON");
+                            } else {
+                                actualState = false;
+                                overrideToggleD0(toggleD0);
+                                textView.setText("Status: OFF");
+                            }
                         }
-                        else {
-                            actualState = false;
-                            overrideToggleD0(toggleD0);
-                            textView.setText("Status: OFF");
+                        catch (NullPointerException Null){
+                            exceptionDialog();
                         }
                     }
                 });
+    }
+
+    private void exceptionDialog(){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Warning");
+        alertDialog.setMessage("Maybe the server didn't start correctly, please restart NodeMCU");
+        alertDialog.show();
+    }
+
+    public void setNameD0(View view){
+        final TextView textNameD0 = (TextView) findViewById(R.id.nameD0);
+        AlertDialog.Builder dialogbox = new AlertDialog.Builder(this);
+        dialogbox.setTitle("Change Pin D0 Name");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogbox.setView(input);
+        dialogbox.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                nameD0 = input.getText().toString();
+                textNameD0.setText(nameD0);
+            }
+        });
+        dialogbox.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialogbox.show();
     }
 
     public void onAppOpenUpdate(){
@@ -81,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         // if real: OFF, button = TURN ON
     }
 
-    public void fetch0(View view){
+    public void fetch(View view){
         final TextView textStatusD0 = (TextView) findViewById(R.id.textStatusD0);
         stateURL = pin0.getStateURL();
         requestHTTP(stateURL, textStatusD0);
