@@ -2,69 +2,395 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textStatusD0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="8dp"
-        android:text="Status: .."
-        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/toggleD0" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed"
         android:onClick="fetch"
-        android:text="Update status"
+        android:text="อัพเดตสถานะ"
+        android:textSize="18sp"
+        android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textD0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="74dp"
+        android:text="D0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textD1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD0" />
+
+    <TextView
+        android:id="@+id/textD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD1" />
+
+    <TextView
+        android:id="@+id/textD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD2" />
+
+    <TextView
+        android:id="@+id/textD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD3" />
+
+    <TextView
+        android:id="@+id/textD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD4" />
+
+    <TextView
+        android:id="@+id/textD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD5" />
+
+    <TextView
+        android:id="@+id/textD7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="D7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textD6" />
+
+    <TextView
+        android:id="@+id/textNameD0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="74dp"
+        android:onClick="setNameD0"
+        android:text="Name 1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD0"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNameD1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD1"
+        android:text="Name 2"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD1"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD0" />
+
+    <TextView
+        android:id="@+id/textNameD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD2"
+        android:text="Name 3"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD2"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD1" />
+
+    <TextView
+        android:id="@+id/textNameD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD3"
+        android:text="Name 4"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD3"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD2" />
+
+    <TextView
+        android:id="@+id/textNameD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD4"
+        android:text="Name 5"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD4"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD3" />
+
+    <TextView
+        android:id="@+id/textNameD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD5"
+        android:text="Name 6"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD5"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD4" />
+
+    <TextView
+        android:id="@+id/textNameD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD6"
+        android:text="Name 7"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD6"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD5" />
+
+    <TextView
+        android:id="@+id/textNameD7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:onClick="setNameD7"
+        android:text="Name 8"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textD7"
+        app:layout_constraintTop_toBottomOf="@+id/textNameD6" />
 
     <ToggleButton
         android:id="@+id/toggleD0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="72dp"
-        android:hapticFeedbackEnabled="false"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:onClick="onToggleD0"
-        android:text="ToggleButton"
         android:textOff="Turn On"
         android:textOn="Turn Off"
-        app:layout_constraintStart_toStartOf="@+id/pinD0"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textNameD0"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
-    <TextView
-        android:id="@+id/nameD0"
+    <ToggleButton
+        android:id="@+id/toggleD1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:onClick="setNameD0"
-        android:text="Change name"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD1"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD1"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD0" />
+
+    <ToggleButton
+        android:id="@+id/toggleD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD2"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD2"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD1" />
+
+    <ToggleButton
+        android:id="@+id/toggleD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD3"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD3"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD2" />
+
+    <ToggleButton
+        android:id="@+id/toggleD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD4"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD4"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD3" />
+
+    <ToggleButton
+        android:id="@+id/toggleD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD5"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD5"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD4" />
+
+    <ToggleButton
+        android:id="@+id/toggleD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD6"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD6"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD5" />
+
+    <ToggleButton
+        android:id="@+id/toggleD7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:onClick="onToggleD7"
+        android:textOff="Turn On"
+        android:textOn="Turn Off"
+        app:layout_constraintStart_toEndOf="@+id/textNameD7"
+        app:layout_constraintTop_toBottomOf="@+id/toggleD6" />
+
+    <TextView
+        android:id="@+id/textStatusD0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/toggleD0"
-        app:layout_constraintStart_toEndOf="@+id/pinD0" />
+        app:layout_constraintStart_toEndOf="@+id/toggleD0" />
 
     <TextView
-        android:id="@+id/pinD0"
+        android:id="@+id/textStatusD1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="Pin D0:"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD1"
+        app:layout_constraintStart_toEndOf="@+id/toggleD1" />
+
+    <TextView
+        android:id="@+id/textStatusD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD2"
+        app:layout_constraintStart_toEndOf="@+id/toggleD2" />
+
+    <TextView
+        android:id="@+id/textStatusD3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD3"
+        app:layout_constraintStart_toEndOf="@+id/toggleD3" />
+
+    <TextView
+        android:id="@+id/textStatusD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD4"
+        app:layout_constraintStart_toEndOf="@+id/toggleD4" />
+
+    <TextView
+        android:id="@+id/textStatusD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD5"
+        app:layout_constraintStart_toEndOf="@+id/toggleD5" />
+
+    <TextView
+        android:id="@+id/textStatusD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD6"
+        app:layout_constraintStart_toEndOf="@+id/toggleD6" />
+
+    <TextView
+        android:id="@+id/textStatusD7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="สถานะ: .."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/toggleD7"
+        app:layout_constraintStart_toEndOf="@+id/toggleD7" />
+
+    <TextView
+        android:id="@+id/textServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="setServer"
+        android:text="192.168.1.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

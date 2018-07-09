@@ -1,20 +1,17 @@
 package nodemcu.poomon.nodemcucontroller02;
 
 public class GPIO {
-    private final String[] pins = {"D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8"};
-    private String url = "http://192.168.1.16/";
-    private String returnURL;
+    private final String[] pins = {"D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "RX", "TX"};
+    private String returnURL, urlServer;
     private int pinNum;
 
     public GPIO(int pinNum){
         this.pinNum = pinNum;
-        returnURL = String.format(url + pins[pinNum]);
-    }
-    public GPIO(){
-
+        String urlServer = "192.168.1.16";
+        returnURL = String.format("http://" + urlServer + "/" + pins[pinNum]);
     }
     public void resetURL(){
-        returnURL = String.format(url + pins[pinNum]);
+        returnURL = String.format("http://" + urlServer + "/" + pins[pinNum]);
     }
     public String getOnURL() {
         this.resetURL();
@@ -27,6 +24,10 @@ public class GPIO {
     public String getStateURL(){
         this.resetURL();
         return returnURL += "/state";
+    }
+
+    public void setUrlServer(String url){
+        urlServer = url;
     }
 
 }
